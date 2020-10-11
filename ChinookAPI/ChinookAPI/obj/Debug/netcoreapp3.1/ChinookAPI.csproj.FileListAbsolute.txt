@@ -312,3 +312,5 @@ C:\Users\Direccion ENAH\source\repos\ChinookAPI\ChinookAPI\ChinookAPI\bin\Debug\
 C:\Users\Direccion ENAH\source\repos\ChinookAPI\ChinookAPI\ChinookAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
 C:\Users\Direccion ENAH\source\repos\ChinookAPI\ChinookAPI\ChinookAPI\obj\Debug\netcoreapp3.1\ChinookAPI.csproj.CoreCompileInputs.cache
 C:\Users\Direccion ENAH\source\repos\ChinookAPI\ChinookAPI\ChinookAPI\obj\Debug\netcoreapp3.1\ChinookAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mario\Desktop\SegundoTrabajo\ChinookAPI\ChinookAPI\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Mario\Desktop\SegundoTrabajo\ChinookAPI\ChinookAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll

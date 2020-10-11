@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ChinookAPI.Models;
+using Microsoft.AspNetCore.Routing;
 
 namespace ChinookAPI.Controllers
 {
@@ -18,8 +19,8 @@ namespace ChinookAPI.Controllers
         public CancionesController(ChinookContext context)
         {
             _context = context;
-           
-            
+
+
         }
 
         // GET: api/Canciones
@@ -41,6 +42,20 @@ namespace ChinookAPI.Controllers
             }
 
             return cancion;
+        }
+
+        //GET: api/Canciones/nombre/NombreCancion
+        [HttpGet("nombre/{nombre}")]
+        public async Task<ActionResult<IEnumerable<Cancion>>> GetCancionNombre(string nombre)
+        {
+            var cancion = _context.Cancion.AsQueryable();
+
+            if (nombre!=null)
+            {
+                cancion = _context.Cancion.Where(c => c.Nombre.Equals(nombre));
+            }
+            
+            return await cancion.ToListAsync();
         }
 
         // PUT: api/Canciones/5
