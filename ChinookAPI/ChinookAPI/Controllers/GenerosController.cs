@@ -11,50 +11,48 @@ namespace ChinookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CancionesController : ControllerBase
+    public class GenerosController : ControllerBase
     {
         private readonly ChinookContext _context;
 
-        public CancionesController(ChinookContext context)
+        public GenerosController(ChinookContext context)
         {
             _context = context;
-           
-            
         }
 
-        // GET: api/Canciones
+        // GET: api/Generos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cancion>>> GetCancion()
+        public async Task<ActionResult<IEnumerable<Genero>>> GetGenero()
         {
-            return await _context.Cancion.ToListAsync();
+            return await _context.Genero.ToListAsync();
         }
 
-        // GET: api/Canciones/5
+        // GET: api/Generos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cancion>> GetCancion(int id)
+        public async Task<ActionResult<Genero>> GetGenero(int id)
         {
-            var cancion = await _context.Cancion.FindAsync(id);
+            var genero = await _context.Genero.FindAsync(id);
 
-            if (cancion == null)
+            if (genero == null)
             {
                 return NotFound();
             }
 
-            return cancion;
+            return genero;
         }
 
-        // PUT: api/Canciones/5
+        // PUT: api/Generos/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCancion(int id, Cancion cancion)
+        public async Task<IActionResult> PutGenero(int id, Genero genero)
         {
-            if (id != cancion.CancionId)
+            if (id != genero.GeneroId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cancion).State = EntityState.Modified;
+            _context.Entry(genero).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +60,7 @@ namespace ChinookAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CancionExists(id))
+                if (!GeneroExists(id))
                 {
                     return NotFound();
                 }
@@ -75,37 +73,37 @@ namespace ChinookAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Canciones
+        // POST: api/Generos
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Cancion>> PostCancion(Cancion cancion)
+        public async Task<ActionResult<Genero>> PostGenero(Genero genero)
         {
-            _context.Cancion.Add(cancion);
+            _context.Genero.Add(genero);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCancion", new { id = cancion.CancionId }, cancion);
+            return CreatedAtAction("GetGenero", new { id = genero.GeneroId }, genero);
         }
 
-        // DELETE: api/Canciones/5
+        // DELETE: api/Generos/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Cancion>> DeleteCancion(int id)
+        public async Task<ActionResult<Genero>> DeleteGenero(int id)
         {
-            var cancion = await _context.Cancion.FindAsync(id);
-            if (cancion == null)
+            var genero = await _context.Genero.FindAsync(id);
+            if (genero == null)
             {
                 return NotFound();
             }
 
-            _context.Cancion.Remove(cancion);
+            _context.Genero.Remove(genero);
             await _context.SaveChangesAsync();
 
-            return cancion;
+            return genero;
         }
 
-        private bool CancionExists(int id)
+        private bool GeneroExists(int id)
         {
-            return _context.Cancion.Any(e => e.CancionId == id);
+            return _context.Genero.Any(e => e.GeneroId == id);
         }
     }
 }

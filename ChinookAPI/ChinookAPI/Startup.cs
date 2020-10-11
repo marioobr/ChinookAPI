@@ -28,7 +28,7 @@ namespace ChinookAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("ChinookAPI");
-            services.AddDbContextPool<ChinookContext>(opt => opt.UseSqlServer(connection));
+            services.AddDbContextPool<ChinookContext>(opt => opt.UseLazyLoadingProxies().UseSqlServer(connection));
             services.AddControllers();
         }
 

@@ -7,12 +7,12 @@ namespace ChinookAPI.Models
     {
         public Genero()
         {
-            Cancion = new HashSet<Cancion>();
+          
         }
 
         public int GeneroId { get; set; }
         public string Nombre { get; set; }
 
-        public virtual ICollection<Cancion> Cancion { get; set; }
+ 
     }
 }

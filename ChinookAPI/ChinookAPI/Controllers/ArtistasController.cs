@@ -11,50 +11,48 @@ namespace ChinookAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CancionesController : ControllerBase
+    public class ArtistasController : ControllerBase
     {
         private readonly ChinookContext _context;
 
-        public CancionesController(ChinookContext context)
+        public ArtistasController(ChinookContext context)
         {
             _context = context;
-           
-            
         }
 
-        // GET: api/Canciones
+        // GET: api/Artistas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cancion>>> GetCancion()
+        public async Task<ActionResult<IEnumerable<Artista>>> GetArtista()
         {
-            return await _context.Cancion.ToListAsync();
+            return await _context.Artista.ToListAsync();
         }
 
-        // GET: api/Canciones/5
+        // GET: api/Artistas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cancion>> GetCancion(int id)
+        public async Task<ActionResult<Artista>> GetArtista(int id)
         {
-            var cancion = await _context.Cancion.FindAsync(id);
+            var artista = await _context.Artista.FindAsync(id);
 
-            if (cancion == null)
+            if (artista == null)
             {
                 return NotFound();
             }
 
-            return cancion;
+            return artista;
         }
 
-        // PUT: api/Canciones/5
+        // PUT: api/Artistas/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCancion(int id, Cancion cancion)
+        public async Task<IActionResult> PutArtista(int id, Artista artista)
         {
-            if (id != cancion.CancionId)
+            if (id != artista.ArtistaId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cancion).State = EntityState.Modified;
+            _context.Entry(artista).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +60,7 @@ namespace ChinookAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CancionExists(id))
+                if (!ArtistaExists(id))
                 {
                     return NotFound();
                 }
@@ -75,37 +73,37 @@ namespace ChinookAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Canciones
+        // POST: api/Artistas
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Cancion>> PostCancion(Cancion cancion)
+        public async Task<ActionResult<Artista>> PostArtista(Artista artista)
         {
-            _context.Cancion.Add(cancion);
+            _context.Artista.Add(artista);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCancion", new { id = cancion.CancionId }, cancion);
+            return CreatedAtAction("GetArtista", new { id = artista.ArtistaId }, artista);
         }
 
-        // DELETE: api/Canciones/5
+        // DELETE: api/Artistas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Cancion>> DeleteCancion(int id)
+        public async Task<ActionResult<Artista>> DeleteArtista(int id)
         {
-            var cancion = await _context.Cancion.FindAsync(id);
-            if (cancion == null)
+            var artista = await _context.Artista.FindAsync(id);
+            if (artista == null)
             {
                 return NotFound();
             }
 
-            _context.Cancion.Remove(cancion);
+            _context.Artista.Remove(artista);
             await _context.SaveChangesAsync();
 
-            return cancion;
+            return artista;
         }
 
-        private bool CancionExists(int id)
+        private bool ArtistaExists(int id)
         {
-            return _context.Cancion.Any(e => e.CancionId == id);
+            return _context.Artista.Any(e => e.ArtistaId == id);
         }
     }
 }
