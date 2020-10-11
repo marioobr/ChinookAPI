@@ -41,6 +41,20 @@ namespace ChinookAPI.Controllers
             return artista;
         }
 
+        //GET: api/Artistas/nombre/NombreArtista
+        [HttpGet("nombre/{nombre}")]
+        public async Task<ActionResult<IEnumerable<Artista>>> GetArtistaNombre(string nombre)
+        {
+            var artista = _context.Artista.AsQueryable();
+
+            if (nombre != null)
+            {
+                artista = _context.Artista.Where(c => c.Nombre.Equals(nombre));
+            }
+
+            return await artista.ToListAsync();
+        }
+
         // PUT: api/Artistas/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

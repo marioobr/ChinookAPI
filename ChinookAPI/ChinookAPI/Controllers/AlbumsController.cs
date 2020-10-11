@@ -42,6 +42,20 @@ namespace ChinookAPI.Controllers
             return album;
         }
 
+        //GET: api/Albums/titulo/TituloAlbum
+        [HttpGet("titulo/{titulo}")]
+        public async Task<ActionResult<IEnumerable<Album>>> GetAlbumNombre(string nombre)
+        {
+            var album = _context.Album.AsQueryable();
+
+            if (nombre != null)
+            {
+                album = _context.Album.Where(c => c.Titulo.Equals(nombre));
+            }
+
+            return await album.ToListAsync();
+        }
+
         // PUT: api/Albums/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

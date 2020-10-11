@@ -41,6 +41,20 @@ namespace ChinookAPI.Controllers
             return genero;
         }
 
+        //GET: api/Generos/genero/NombreGenero
+        [HttpGet("genero/{nombre}")]
+        public async Task<ActionResult<IEnumerable<Genero>>> GetGeneroNombre(string nombre)
+        {
+            var genero = _context.Genero.AsQueryable();
+
+            if (nombre != null)
+            {
+                genero = _context.Genero.Where(c => c.Nombre.Equals(nombre));
+            }
+
+            return await genero.ToListAsync();
+        }
+
         // PUT: api/Generos/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
